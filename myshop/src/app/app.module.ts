@@ -8,8 +8,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './components/landing/landing.component';
 import { ProductsComponent } from './components/products/products.component';
 import { PanelTopComponent } from './components/panel-top/panel-top.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { MenuComponent } from './components/admin/menu/menu.component';
+import { AdmProductsComponent } from './components/admin/adm-products/adm-products.component';
 
 const appRoutes: Routes = [
+  { path: 'adm_products', component: AdmProductsComponent },
+  { path: 'adm_menu', component: MenuComponent },
+  { path: 'adm_dashboard', component: DashboardComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'landing', component: LandingComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' }
@@ -20,7 +26,10 @@ const appRoutes: Routes = [
     AppComponent,
     LandingComponent,
     ProductsComponent,
-    PanelTopComponent
+    PanelTopComponent,
+    DashboardComponent,
+    MenuComponent,
+    AdmProductsComponent
   ],
   imports: [
     BrowserModule,

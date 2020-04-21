@@ -11,8 +11,10 @@ import { PanelTopComponent } from './components/panel-top/panel-top.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { MenuComponent } from './components/admin/menu/menu.component';
 import { AdmProductsComponent } from './components/admin/adm-products/adm-products.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const appRoutes: Routes = [
+  { path: 'cart', component: CartComponent },
   { path: 'adm_products', component: AdmProductsComponent },
   { path: 'adm_menu', component: MenuComponent },
   { path: 'adm_dashboard', component: DashboardComponent },
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
     PanelTopComponent,
     DashboardComponent,
     MenuComponent,
-    AdmProductsComponent
+    AdmProductsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

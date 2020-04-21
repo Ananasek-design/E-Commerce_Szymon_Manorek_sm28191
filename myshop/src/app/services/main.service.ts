@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MainService {
+  [x: string]: any;
   constructor() {
   }
   @Injectable({
@@ -15,6 +16,8 @@ export class MainService {
   };
   products; // Tutaj wyląduje obiekt z produktami - odpowiedź API i bazy danych na naszą prośbę
   apiPath = 'http://jakubadamus.cba.pl/xhr.php?'; // Ścieżka do naszego api
+
+  cart = [];
 
   getProducts(productsRequest) { //  Pobiera produkty poprzez API
     const s = new Promise((resolve, reject) => {
@@ -72,12 +75,12 @@ export class MainService {
   removeProduct(id) {
      const s = new Promise((resolve, reject) => {
         const xhttp = new XMLHttpRequest();
-         let request = { action: 'removeProduct', id }
-         const SQL = ('object=' + encodeURIComponent(JSON.stringify(request)));
-          console.log(this.apiPath + SQL);
-           xhttp.open('GET', this.apiPath + SQL, true);
-            xhttp.send();
-             xhttp.onreadystatechange = function() {
+        const request = { action: 'removeProduct', id }
+        const SQL = ('object=' + encodeURIComponent(JSON.stringify(request)));
+        console.log(this.apiPath + SQL);
+        xhttp.open('GET', this.apiPath + SQL, true);
+        xhttp.send();
+        xhttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                    const resultObject = JSON.parse(xhttp.responseText);
 
@@ -88,10 +91,11 @@ export class MainService {
                   }
                 };
               });
-               s.then((onmessage: any) => {
+     s.then((onmessage: any) => {
                   console.log('Pomyślnie usunięto produkt!');
                  }).catch((onmessage) => {
                     console.log('Coś poszło nie tak podczas usuwania produktu!');
                    });
                    }
+
 }
